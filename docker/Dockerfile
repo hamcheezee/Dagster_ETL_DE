@@ -24,6 +24,7 @@ COPY . .
 
 EXPOSE 3000
 
-# Set up ODBC configurations if required
+# Copy the libodbc.2.dylib library
+# COPY /opt/homebrew/opt/unixodbc/lib/libodbc.2.dylib .
 
 CMD ["dagster-webserver", "-h", "workspace.yaml", "-h", "0.0.0.0", "-p", "3000"]

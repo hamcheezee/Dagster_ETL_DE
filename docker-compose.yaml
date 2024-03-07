@@ -5,6 +5,13 @@ services:
       dockerfile: docker/Dockerfile
     ports:
       - 3000:3000
+    # Define environment variables for PostgreSQL connection
+    environment:
+      - uid=postgres
+      - pwd=password
+      - server=pg-warehouse
+      - db=postgres
+      - port=5432
     networks:
       - dagster-network
 
@@ -17,6 +24,13 @@ services:
       - dagster-daemon
       - run
     restart: on-failure
+    # Define environment variables for PostgreSQL connection
+    environment:
+      - uid=postgres
+      - pwd=password
+      - server=pg-warehouse
+      - db=postgres
+      - port=5432
     networks:
       - dagster-network
 
