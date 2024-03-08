@@ -76,6 +76,13 @@ services:
     networks:
       - dagster-network
 
+  duckdb:
+    image: duckdb
+    ports:
+      - "5001:5000"
+    networks:
+      - dagster-network
+
 volumes:
   postgres-data:
   pgadmin:    

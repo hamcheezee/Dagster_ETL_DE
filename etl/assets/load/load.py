@@ -5,7 +5,7 @@ import pandas as pd
 from etl.assets.extract.extract_local_file import read__person , read__condition_occurrence , read__drug_exposure
 from etl.assets.transform.transform import topten_condition_occurrence
 import logging
-
+import duckdb
 
 # load local files to postgresSQL database
 @asset( group_name="load", compute_kind="pandas", io_manager_key="db_io")

@@ -12,7 +12,23 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install dagit dagster-webserver dagster-postgres
-# Install additional packages if needed for the PostgreSQL ODBC driver
+
+# Install DuckDB dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libboost-all-dev
+
+# Clone and build DuckDB
+RUN git clone https://github.com/duckdb/duckdb.git
+WORKDIR duckdb/build
+RUN cmake ..
+RUN make
+RUN make install
+
+# Install Python bindings for DuckDB
+RUN pip install duckdb
 
 # Install pyodbc and other Python dependencies
 COPY requirements.txt .
